@@ -1,7 +1,7 @@
 package com.example.springMvcDemo.service;
 
 import com.example.springMvcDemo.model.Role;
-import com.example.springMvcDemo.model.User;
+import com.example.springMvcDemo.model.Users;
 import com.example.springMvcDemo.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,7 +26,7 @@ public class SSUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            User user = userRepository.findByUsername(username);
+            Users user = userRepository.findByUsername(username);
             if (user == null) {
                 return null;
             }
@@ -40,7 +40,7 @@ public class SSUserDetailsService implements UserDetailsService {
         }
     }
 
-    private Set<GrantedAuthority> getAuthorities(User user) {
+    private Set<GrantedAuthority> getAuthorities(Users user) {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         for (Role role : user.getRoles()) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());

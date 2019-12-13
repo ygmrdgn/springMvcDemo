@@ -1,11 +1,12 @@
 package com.example.springMvcDemo.service;
 
-import com.example.springMvcDemo.model.User;
+import com.example.springMvcDemo.model.Users;
 import com.example.springMvcDemo.repository.RoleRepository;
 import com.example.springMvcDemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 
 @Service
@@ -21,17 +22,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User findByEmail(String email) {
+    public Users findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public User findByUsername(String username) {
+    public Users findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public void saveUser(User user) {
+    public void saveUser(@Valid Users user) {
         user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
-        user.setEnabled(true);
+//        user.setEnabled(true);
         userRepository.save(user);
     }
 }

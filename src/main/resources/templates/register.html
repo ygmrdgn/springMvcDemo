@@ -13,13 +13,15 @@
 
     <h1 class="h3 mb-3 font-weight-normal">Üye Kaydı</h1>
 
-    <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <form th:action="@{/register}" th:object="${users}" method="post">
+
+        <input type="hidden" th:field="*{id}"/>
 
         <label>Adnız </label>
-        <input type="text" id="firstName" placeholder="Adınız" th:field="*{firstName}" class="form-control"/><br/>
+        <input type="text" id="name" placeholder="name" th:field="*{name}" class="form-control"/><br/>
 
         <label>Soyadınız</label>
-        <input type="text" id="lastName" placeholder="Soyadınız" th:field="*{lastName}" class="form-control"/><br/>
+        <input type="text" id="surname" placeholder="surname" th:field="*{surname}" class="form-control"/><br/>
 
 
         <label>Eposta</label>

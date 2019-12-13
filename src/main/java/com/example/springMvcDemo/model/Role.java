@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "Role")
+@Table(name = "role")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "Email",unique = true)
+    @Column(name = "email",unique = true)
     private String role;
 
     @ManyToMany(mappedBy = "Roles", fetch = FetchType.LAZY)
-    private Collection<User> users;
+    private Collection<Users> users;
 
     public Role() {
     }
@@ -40,11 +40,4 @@ public class Role {
         this.role = role;
     }
 
-    public Collection<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Collection<User> users) {
-        this.users = users;
-    }
 }

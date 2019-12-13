@@ -1,6 +1,6 @@
 package com.example.springMvcDemo.controller;
 
-import com.example.springMvcDemo.model.User;
+import com.example.springMvcDemo.model.Users;
 import com.example.springMvcDemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,19 +19,18 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerPage(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("users", new Users());
         return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String saveRegisterPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+    public String saveRegisterPage(@Valid @ModelAttribute("user") Users user, BindingResult result, Model model) {
         model.addAttribute("user", user);
 
         if (result.hasErrors()) {
             return "register";
         } else {
             userService.saveUser(user);
-
         }
         return "index";
     }
